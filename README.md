@@ -1,6 +1,6 @@
 # Vibe2026
 
-## AI Robot Odyssey
+## GenAI ODYSSEY
 `claude.ai` `Opus 5.5 Medium` <br>
 
 ### Prompt to HTML
