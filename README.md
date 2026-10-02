@@ -28,6 +28,7 @@ use the uploaded Prompt template to create the Generative AI interative course i
 
 ---
 ## [AMEBA ROBOT ODYSSEY](https://rkuo2000.github.io/EdgeAI-AmebaPro2/)
+`claude.ai` `Opus 5.5 Medium` <br>
 
 ### Prompt
 + [Prompt template](https://github.com/rkuo2000/Vibe2026/blob/main/Prompt-AI_ROBOT_ODYSSEY.txt)
