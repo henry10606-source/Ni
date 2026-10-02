@@ -51,5 +51,3 @@ study controllights.md, generate a BLE smart LED Curtain controller in html, nam
 ```
 
 #### HTML : [Surplife.html](https://github.com/rkuo2000/Vibe2026/blob/main/Surplife/Surplife.html)
-### HTML
-[Surplife.html](https://github.com/rkuo2000/Vibe2026/blob/main/Surplife/Surplife.html)<br>
