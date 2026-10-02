@@ -44,7 +44,7 @@ use the uploaded Prompt template, and study [https://rkuo2000.github.io/EdgeAI-A
 ---
 ## Progressive Web App
 
-### [BLE Smart LED Curtain]()
+### [Surplife Smart LED Curtain](https://rkuo2000.github.io/Surplife/)
 `codex` `GPT-6.1 Sol` `medium`<br>
 
 ### Prompt
@@ -54,6 +54,4 @@ study controllights.md, generate a BLE smart LED Curtain controller in html, nam
 ```
 
 ### HTML
-[Surplife.html](https://github.com/rkuo2000/Vibe2026/blob/main/Surplife/surplife.html)<br>
-![]()
-
+[Surplife.html](https://github.com/rkuo2000/Vibe2026/blob/main/Surplife/Surplife.html)<br>
