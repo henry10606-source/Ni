@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101522">
+<meta name="application-name" content="Surplife">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Surplife">
+<link rel="manifest" href="./surplife.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/surplife-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/surplife-180.png">
+<title>Surplife · Curtain studio</title>
+<style>
+:root{color-scheme:dark;--bg:#101522;--panel:#1a2131;--line:#303a50;--text:#f2f5fc;--muted:#a6b2ca;--accent:#a9b9ff;--hue:265;--level:.8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#252c4a,transparent 55%),var(--bg);color:var(--text);font:16px/1.5 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:36px 24px}header,.row{display:flex;align-items:center;justify-content:space-between;gap:16px}header{margin-bottom:30px}.brand{font-size:26px;font-weight:750;letter-spacing:-1px}.brand span{color:var(--accent)}.eyebrow{color:var(--accent);font-size:12px;letter-spacing:2px;text-transform:uppercase}h1{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:12px 0}h2{font-size:20px;margin:0 0 18px}h3{font-size:15px}p{color:var(--muted)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:12px;background:#283249;color:var(--text);padding:11px 18px;font-weight:600}button.primary{background:var(--accent);border-color:var(--accent);color:#131b35}button:hover:enabled{filter:brightness(1.15)}button:disabled{opacity:.4;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #d4aaff;outline-offset:3px}.pill{padding:7px 12px;border:1px solid var(--line);border-radius:30px;font-size:13px;color:var(--muted)}.pill.live{color:#90e1ba;border-color:#39735b}.grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;margin-top:26px}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px}.preview{align-self:start;min-height:400px;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,hsl(var(--hue) 65% 17%),#0c101b 80%);display:flex;flex-direction:column;justify-content:flex-start}.curtain{display:grid;grid-template-columns:repeat(16,1fr);gap:9px;height:280px;margin:18px 6px}.strand{display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid #ffffff10;align-items:center}.led{width:5px;height:5px;background:hsl(var(--hue) 90% 75%);border-radius:50%;box-shadow:0 0 10px hsl(var(--hue) 95% 60%);opacity:var(--level)}.preview.effects .strand:nth-child(3n){filter:hue-rotate(80deg)}.preview.effects .strand:nth-child(3n+1){filter:hue-rotate(170deg)}.small{font-size:13px;color:var(--muted)}.tabs{display:flex;gap:5px;background:#111827;border-radius:13px;padding:5px;margin-bottom:24px}.tabs button{flex:1;padding:9px;border:0;background:transparent;color:var(--muted)}.tabs button[aria-selected=true]{background:#35415e;color:white}label{display:block;margin:18px 0 8px;color:var(--muted);font-size:14px}input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 18px}select,input[type=text],input[type=number]{width:100%;background:#111827;color:var(--text);border:1px solid var(--line);padding:10px;border-radius:10px}.swatches{display:flex;gap:12px;margin:14px 0 20px}.swatches button{width:34px;height:34px;border-radius:50%;padding:0;background:var(--swatch);border:3px solid #ffffff30}.value{color:var(--text);font-variant-numeric:tabular-nums}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.actions button{flex-grow:1}output{color:var(--text)}#message{margin:20px 0 0;padding:12px 16px;border-radius:12px;background:#202a40;color:#c6d3f0;overflow-wrap:anywhere}#message.error{color:#ffb4b4;background:#422733}details{margin-top:22px}summary{cursor:pointer;font-weight:600}details .inner{margin-top:20px}.settings{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.check{display:flex;align-items:center;gap:9px}.check input{accent-color:var(--accent)}pre{font:12px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:#0c111c;padding:16px;border-radius:12px;max-height:260px;overflow:auto;color:#b9c9e9}.status{margin-top:18px;color:var(--muted);font-size:13px}.status strong{color:#e1e7f6}a{color:var(--accent)}[hidden]{display:none!important}footer{margin-top:26px;color:var(--muted);font-size:12px}@media(max-width:740px){main{padding:22px 16px}.grid{grid-template-columns:1fr}.preview{min-height:280px}.curtain{height:190px}.card{padding:20px}header{align-items:flex-start}.settings{grid-template-columns:1fr}.brand{font-size:23px}}@media(prefers-reduced-motion:no-preference){.led{transition:background .2s,opacity .2s}}
+
+.tabs{overflow-x:auto}.tabs button{white-space:nowrap}.swatches{flex-wrap:wrap}textarea{width:100%;min-height:90px;resize:vertical;background:#111827;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit}input[type=file],audio,meter{width:100%}audio{margin-top:12px}meter{height:20px}.color-bar{height:32px;border-radius:10px;border:1px solid var(--line)}.rgb-channel input{accent-color:var(--channel)}#pixelCanvas{width:100%;height:280px;object-fit:contain;object-position:center top;margin:18px 0}.grid-settings{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid-settings label:last-child{grid-column:1/-1}@media(max-width:740px){#pixelCanvas{height:210px}}
+</style>
+</head>
+<body><main>
+<header><div class="brand">surp<span>life</span> <span class="small">/ curtain</span></div><span class="pill" id="connection" role="status">Disconnected</span></header>
+<div class="eyebrow">A little light. Your atmosphere.</div>
+<h1>Make your space glow.</h1>
+<p>Connect your BLE curtain, pick a color, and set the mood.</p>
+<div class="actions"><button class="primary" id="connect">Connect curtain</button><button id="disconnect" disabled>Disconnect</button><button id="demo">Try demo</button><button id="installApp" hidden>Install Surplife</button></div>
+<div id="message" role="status" aria-live="polite">Use Chrome or Edge with Bluetooth enabled. Serve this page over HTTPS or localhost.</div>
+<p class="small" id="appStatus" role="status" aria-live="polite">Install from your browser’s app menu. Offline access becomes available after the first online visit.</p>
+<div class="grid">
+<section class="card preview" id="preview" aria-label="Illustrative curtain preview"><div class="row"><span class="eyebrow">Your curtain</span><span class="small" id="previewMode">Color preview</span></div><div class="curtain" id="curtain" aria-hidden="true"></div><canvas id="pixelCanvas" hidden aria-label="LED grid preview"></canvas><span class="small" id="gridLabel"></span><div><div class="row"><strong id="deviceName">No curtain connected</strong><span class="small" id="previewBrightness">80%</span></div><div class="small">Illustrative preview · device behavior may differ</div><div class="status" id="deviceStatus">Device status: waiting for a notification</div></div></section>
+<section class="card"><div class="tabs" role="tablist" aria-label="Light mode"><button role="tab" aria-selected="true" aria-controls="colorPanel" id="colorTab" data-mode="color">Color</button><button role="tab" aria-selected="false" aria-controls="effectPanel" id="effectTab" data-mode="effect">Effects</button><button role="tab" aria-selected="false" aria-controls="textPanel" id="textTab" data-mode="text">Text</button><button role="tab" aria-selected="false" aria-controls="picsPanel" id="picsTab" data-mode="pics">Pics</button><button role="tab" aria-selected="false" aria-controls="musicPanel" id="musicTab" data-mode="music">Rhythm</button></div>
+<div id="colorPanel" role="tabpanel" aria-labelledby="colorTab"><h2>Find your color</h2><input id="color" type="hidden" value="#6a00ff"><div class="row"><span>RGB color</span><output id="colorValue">#6A00FF</output></div><div class="color-bar" id="colorBar" role="img" aria-label="Selected RGB color"></div><div class="swatches" id="swatches" aria-label="Color presets"></div><div class="rgb-channel" style="--channel:#ff5767"><label for="red" class="row">Red <output id="redValue">0</output></label><input id="red" type="range" min="0" max="255" value="0"></div><div class="rgb-channel" style="--channel:#75e990"><label for="green" class="row">Green <output id="greenValue">0</output></label><input id="green" type="range" min="0" max="255" value="0"></div><div class="rgb-channel" style="--channel:#7d8bff"><label for="blue" class="row">Blue <output id="blueValue">0</output></label><input id="blue" type="range" min="0" max="255" value="0"></div><p class="small">Color is shared with Text, picture presets and Rhythm. Surplife sends hue and intensity; saturation and white are approximated by the device.</p></div>
+<div id="effectPanel" role="tabpanel" aria-labelledby="effectTab" hidden><h2>Let the lights move</h2><label for="effect">Built-in effect</label><select id="effect"></select><p class="small">Effect IDs 0–17 are documented; names vary by curtain.</p><label for="speed" class="row">Speed <output id="speedValue">50%</output></label><input id="speed" type="range" min="0" max="100" value="50"></div>
+<div id="textPanel" class="mode-panel" role="tabpanel" aria-labelledby="textTab" hidden><label for="textInput">Your message</label><textarea id="textInput" rows="3" maxlength="80" aria-describedby="textNote" placeholder="HELLO&#10;WORLD&#10;!">HI</textarea><p id="textNote" class="mode-note">Enter up to 3 lines, using Enter for a new row. Static text is fitted to your curtain. Set text color and brightness in Color; short lines work best at this resolution.</p></div>
+<div id="picsPanel" class="mode-panel" role="tabpanel" aria-labelledby="picsTab" hidden><label for="picture">Choose a picture</label><input id="picture" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><label for="pictureFit">Fit to curtain</label><select id="pictureFit"><option value="contain">Fit whole picture</option><option value="cover">Fill and crop</option></select><div class="row"><button id="heart">Heart</button><button id="star">Star</button></div><p id="pictureName" class="mode-note" role="status">Choose a local image or a preset. Images stay in your browser.</p></div>
+<div id="musicPanel" role="tabpanel" aria-labelledby="musicTab" hidden><h2>Follow the rhythm</h2><div id="browserMusic"><label for="audioSource">Music source</label><select id="audioSource"><option value="mic">Microphone · nearby music</option><option value="file">Local audio file</option></select><div id="audioFilePanel" hidden><input id="audioFile" type="file" accept="audio/*" aria-label="Local music file"><audio id="audioPlayer" controls preload="metadata"></audio></div><label for="rhythmStyle">Beat response</label><select id="rhythmStyle"><option value="flash">Flash</option><option value="flashing-pics">Flashing pics</option><option value="flashing-text">Flashing text</option><option value="wave">Waving · sea waves</option><option value="color-bar">Color-Bars · rainbow</option></select><p id="rhythmContent" class="mode-note"></p><div id="rhythmContentActions" class="row" hidden><button id="rhythmEditText" hidden>Edit Text</button><button id="rhythmEditPicture" hidden>Choose Pics</button></div><p class="mode-note">Flashing pics uses your selection in Pics tinted with the Color selection; flashing text uses your input in Text. Waving uses rainbow colors; Color-Bars shows multiple rainbow bars, each with a distinct random length, rising from the bottom with beat and volume. Pixel responses use experimental Surplife painting; full frames can take several seconds to transmit.</p><meter id="beatMeter" min="0" max="1" value="0" aria-label="Music energy"></meter><div class="rhythm-buttons"><button id="rhythmStart" class="primary">Start audio</button><button id="rhythmStop" disabled>Stop</button></div><p id="rhythmStatus" class="mode-note" role="status">Start to listen. Connect a curtain to send the beat response.</p><p class="mode-note">Audio is analyzed locally. Microphone permission is requested only when you start. Live response needs this app in the foreground; Bluetooth updates are paced and may lag the preview.</p></div><label for="sensitivity" class="row">Sensitivity <output id="sensitivityValue">75%</output></label><input id="sensitivity" type="range" min="0" max="100" value="75"></div>
+<label for="brightness" class="row">Brightness <output id="brightnessValue">80%</output></label><input id="brightness" type="range" min="0" max="100" value="80">
+<div id="gridSettings" class="mode-panel" hidden><div class="grid-settings"><label for="columns">Columns<input id="columns" type="number" min="1" max="400" value="20"></label><label for="rows">Rows<input id="rows" type="number" min="1" max="400" value="20"></label><label for="wiring">Wiring from top left<select id="wiring"><option value="columns">Columns · same direction</option><option value="columns-zigzag">Columns · serpentine</option><option value="rows-zigzag">Rows · serpentine</option><option value="rows">Rows · same direction</option></select></label></div><p class="small">Match your curtain dimensions and wiring (up to 400 LEDs). Default addressing runs down each column from the top left. Text and Pics paint static frames; uploaded GIFs use their first frame. Pictures use a reduced hue/intensity palette for practical BLE transfer times. Experimental painting requires compatible Surplife firmware.</p></div>
+<p class="small" id="sceneLabel" role="status"></p><label class="check"><input type="checkbox" id="live">Apply changes automatically</label>
+<div class="actions"><button class="primary" id="apply" data-control disabled>Apply color</button><button id="on" data-control disabled>Turn on</button><button id="dark" data-control disabled>Dim to zero</button></div><p class="small">Dim to zero sends a black color. The supplied notes do not specify a power-off command.</p>
+</section></div>
+<details class="card"><summary>Connection &amp; protocol settings</summary><div class="inner"><p class="small">Close the Surplife app and any other apps connected to the curtain, then select it in the BLE picker. The controller automatically looks for compatible controls. Settings take effect on the next connection.</p><div class="settings"><div><label for="service">Service UUID override (optional)</label><input id="service" type="text" placeholder="Auto-detect (F000 / FFFF)" spellcheck="false"></div><div><label for="packetSize">Maximum write size</label><select id="packetSize"><option value="20">20 bytes (conservative)</option><option value="64">64 bytes (requires device support)</option><option value="128">128 bytes (requires device support)</option></select></div><div><label for="continuation">Continuation header</label><select id="continuation"><option value="5">5 bytes (V0 source analysis)</option><option value="6">6 bytes (alternate notes)</option></select></div><div><label for="timeSuffix">Optional clock suffix (hex)</label><input id="timeSuffix" type="text" placeholder="Leave empty; captured example: 0f d1" spellcheck="false"></div></div><label class="check"><input type="checkbox" id="allDevices" checked>Show all BLE devices</label><label class="check"><input type="checkbox" id="syncClock" checked>Sync local time when connecting</label><p class="small">The original clock sample has two unexplained trailing bytes; the linked update uses a 10-byte timestamp. This controller uses the updated timestamp by default. Segmentation descriptions also differ; start with the 5-byte V0 header.</p><div class="actions"><button id="ping" data-control disabled>Request status</button><button id="sync" data-control disabled>Sync time</button></div></div></details>
+<details class="card"><summary>Color calibration</summary><div class="inner"><p class="small">Test each physical channel and note its color, then select a mapping. “Save mapping” writes the selected order to the curtain’s memory.</p><div class="actions"><button data-pin="0" data-control disabled>Test pin 1</button><button data-pin="1" data-control disabled>Test pin 2</button><button data-pin="2" data-control disabled>Test pin 3</button></div><label for="mapping">Physical pin color order</label><select id="mapping"><option>RGB</option><option>RBG</option><option>GRB</option><option>GBR</option><option>BRG</option><option>BGR</option></select><div class="actions"><button id="saveMapping" data-control disabled>Save mapping</button><button id="exitCalibration" data-control disabled>Return to selected mode</button></div></div></details>
+<details class="card"><summary>Packet log</summary><div class="inner"><p class="small">TX is a completed BLE write, not confirmation that the curtain applied it. DEMO packets never reach a device.</p><pre id="log" aria-label="BLE packet log">Ready.</pre><div class="actions"><button id="clearLog">Clear log</button><button id="downloadLog">Download log</button></div></div></details>
+<footer>Based on <a href="controllights.md">controllights.md</a> and its <a href="https://gist.github.com/marcelrv/36f9d2c66a273289211cc5fa73b00018#file-surplife_protocol_description-md" target="_blank" rel="noopener">linked protocol update</a>. Unofficial controller · no external scripts or services.</footer>
+</main>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+// Known Surplife curtain and MagicHome2 BLE service variants.
+const SERVICE_UUIDS = ['0000f000-0000-1000-8000-00805f9b34fb','0000ffff-0000-1000-8000-00805f9b34fb'];
+const WRITE_UUID = '0000ff01-0000-1000-8000-00805f9b34fb';
+const NOTIFY_UUID = '0000ff02-0000-1000-8000-00805f9b34fb';
+const PING = [0xea,0x81,0x8a,0x8b,0x59];
+let device=null, writer=null, notifier=null, demo=false, ready=false, connecting=false;
+let sequence=0, generation=0, mode='color', queue=Promise.resolve(), liveTimer=null;
+let transport={size:20,continuation:5}, received=new Map(), entries=[];
+const MAX_LEDS=400;
+let previewOn=true, previewColumns=0, previewRows=0, pendingCommands=0;
+let pictureImage=null, picturePreset=null, pictureVersion=0;
+let rhythmSession=0, rhythmActive=false, rhythmTimer=null, rhythmContext=null, rhythmStream=null, rhythmSource=null, audioURL=null;
+let rhythmWrite=Promise.resolve(), rhythmFrameBusy=false, rhythmLastSend=-Infinity, rhythmEnergy=0, rhythmPhase=0, rhythmBarLevels=[];
+const number=id=>Number($(id).value);
+const hex=bytes=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join(' ');
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+function message(text,error=false){$('message').textContent=text;$('message').classList.toggle('error',error);}
+function log(kind,text){entries.push(`${new Date().toLocaleTimeString()} ${kind}  ${text}`);if(entries.length>250)entries.shift();$('log').textContent=entries.join('\n');$('log').scrollTop=$('log').scrollHeight;}
+function setReady(value){ready=value;document.querySelectorAll('[data-control]').forEach(b=>b.disabled=!value);$('disconnect').disabled=!value;$('connect').disabled=value||connecting||!navigator.bluetooth||!window.isSecureContext;$('demo').disabled=connecting;$('demo').textContent=demo?'Exit demo':'Try demo';$('connection').textContent=value?(demo?'Demo · no BLE':'Connected'):'Disconnected';$('connection').classList.toggle('live',value);updatePreview();}
+function parseHex(text){const clean=text.trim();if(!clean)return [];if(!/^(?:[0-9a-f]{2})(?:\s+[0-9a-f]{2})*$/i.test(clean))throw Error('Use pairs of hex digits separated by spaces.');return clean.split(/\s+/).map(x=>parseInt(x,16));}
+// Match the captured single frames exactly: length excludes 0A, chunk length includes it.
+// Multisegment V0 uses a 5-byte continuation header; a 6-byte variant is selectable.
+function encode(payload,seq,size=20,continuation=5){
+ if(!payload.length||payload.length>65534)throw Error('Invalid payload length.');
+ if(size<9||size>255)throw Error('Invalid maximum packet size.');
+ const len=payload.length, first=payload.slice(0,size-8), multi=first.length<len;
+ const frames=[Uint8Array.from([multi?0x40:0,seq,multi?0:0x80,0,len>>8,len&255,first.length+1,0x0a,...first])];
+ let offset=first.length,index=1;
+ while(offset<len){const chunk=payload.slice(offset,offset+size-continuation);offset+=chunk.length;const id=(offset===len?0x8000:0)|index++;frames.push(Uint8Array.from([0x40,seq,id>>8,id&255,chunk.length,...(continuation===6?[0]:[]),...chunk]));}
+ return frames;
+}
+// Queue complete transactions so calibration, audio and pixel frames cannot interleave.
+function send(payload,label){return sendBatch([payload],label);}
+function sendBatch(payloads,label,valid=()=>true){
+ const token=generation,target=writer,simulated=demo,settings={...transport};pendingCommands++;
+ const task=queue.then(async()=>{
+  if(token!==generation||(!simulated&&!device?.gatt.connected)||(!target&&!simulated))throw Error('Curtain is disconnected.');
+  for(const payload of payloads){
+   if(!valid())return;
+   sequence=(sequence+1)&255;
+   // Finish a segmented message before cancelling a superseded audio frame.
+   for(const frame of encode(payload,sequence,settings.size,settings.continuation)){
+    if(token!==generation)throw Error('Connection changed; command cancelled.');
+    if(!simulated){if(target.properties.writeWithoutResponse&&target.writeValueWithoutResponse)await target.writeValueWithoutResponse(frame);else if(target.properties.write&&target.writeValueWithResponse)await target.writeValueWithResponse(frame);else await target.writeValue(frame);}
+    log(simulated?'DEMO':'TX',`${label}: ${hex(frame)}`);await delay(40);
+   }
+  }
+ }).finally(()=>{pendingCommands--;});queue=task.catch(()=>{});return task;
+}
+function timePayload(date=new Date()){
+ const year=date.getFullYear();return [0x10,Math.floor(year/100),year%100,date.getMonth()+1,date.getDate(),date.getHours(),date.getMinutes(),date.getSeconds(),date.getDay()||7,0,...parseHex($('timeSuffix').value)];
+}
+function musicPayload(){
+ // Preserve the full observed 54-byte palette/configuration template.
+ const data=parseHex('e1 05 00 64 03 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 a1 00 00 00 06 a1 00 64 64 a1 96 64 64 a1 78 64 64 a1 5a 64 64 a1 3c 64 64 a1 1e 64 64');
+ data[3]=number('brightness');data[7]=number('sensitivity');return data;
+}
+function rgbToHue(rgb){
+ const [r,g,b]=rgb.map(v=>v/255),max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
+ let hue=0;if(delta){if(max===r)hue=((g-b)/delta)%6;else if(max===g)hue=(b-r)/delta+2;else hue=(r-g)/delta+4;}
+ return {hue:(hue*60+360)%360,value:max};
+}
+function colorPayload(energy=1){const c=rgbToHue(rgbColor());return [0xe2,0x0b,Math.round(c.hue*255/360),Math.round(c.value*number('brightness')/100*255*energy)];}
+function selectedPayload(){if(mode==='effect')return [0xe0,2,0,number('effect'),number('speed'),number('brightness')];if(mode==='music')return musicPayload();return colorPayload();}
+async function apply(){stopAudio();if(mode==='text'||mode==='pics')await paintFrame(contentFrame());else await send(selectedPayload(),mode);message(demo?'Demo preview updated. No Bluetooth data sent.':'Command written. Device confirmation appears in the status panel when available.');}
+async function run(action){try{await action();}catch(error){message(error.message,true);log('ERROR',error.message);}}
+function updatePreview(){
+ const level=number('brightness'),rgb=rgbColor(),h=rgbToHue(rgb).hue;
+ document.documentElement.style.setProperty('--hue',h);document.documentElement.style.setProperty('--level',level/100);
+ $('colorValue').textContent=$('color').value.toUpperCase();$('colorBar').style.background=$('color').value;
+ for(const [i,id] of ['red','green','blue'].entries()){$(id).value=rgb[i];$(id+'Value').textContent=rgb[i];}
+ $('preview').classList.toggle('effects',mode==='effect');$('previewMode').textContent=mode==='music'?'Rhythm preview':mode[0].toUpperCase()+mode.slice(1)+' preview';
+ $('previewBrightness').textContent=level+'%';$('apply').textContent='Apply '+(mode==='music'?'curtain microphone':mode);
+ for(const id of ['brightness','speed','sensitivity'])$(id+'Value').textContent=number(id)+'%';
+ const pixels=mode==='text'||mode==='pics'||(mode==='music'&&rhythmUsesPixels());
+ $('gridSettings').hidden=!pixels;$('pixelCanvas').hidden=!pixels;$('curtain').hidden=pixels;
+ $('sceneLabel').textContent='';let valid=true;
+ try{
+  const {columns,rows}=gridSize();$('gridLabel').textContent=`${columns} × ${rows} · ${columns*rows} LEDs`;
+  if(columns!==previewColumns||rows!==previewRows){$('curtain').replaceChildren();$('curtain').style.gridTemplateColumns=`repeat(${columns},1fr)`;
+   for(let x=0;x<columns;x++){const strand=document.createElement('div');strand.className='strand';for(let y=0;y<rows;y++){const led=document.createElement('i');led.className='led';strand.append(led);} $('curtain').append(strand);}previewColumns=columns;previewRows=rows;}
+  if(pixels)drawPixels(mode==='music'?rhythmPixelFrame(rhythmEnergy,rhythmPhase):contentFrame());
+ }catch(error){valid=false;$('sceneLabel').textContent=error.message;if(pixels)$('pixelCanvas').getContext('2d').clearRect(0,0,$('pixelCanvas').width,$('pixelCanvas').height);}
+ $('apply').disabled=!ready||!valid||mode==='music';
+ $('live').disabled=pixels||mode==='music';
+ $('rhythmContent').textContent=$('rhythmStyle').value==='flashing-text'?'Uses your Text message.':$('rhythmStyle').value==='flashing-pics'?'Uses your Pics selection tinted with Color.':'Responds to beat and volume.';
+ $('rhythmContentActions').hidden=!['flashing-text','flashing-pics'].includes($('rhythmStyle').value);
+ $('rhythmEditText').hidden=$('rhythmStyle').value!=='flashing-text';$('rhythmEditPicture').hidden=$('rhythmStyle').value!=='flashing-pics';
+}
+function change(){updatePreview();clearTimeout(liveTimer);if($('live').checked&&!$('live').disabled&&ready)liveTimer=setTimeout(()=>run(apply),180);}
+function selectMode(next){stopAudio();mode=next;for(const name of ['color','effect','text','pics','music']){$(name+'Panel').hidden=name!==mode;$(name+'Tab').setAttribute('aria-selected',String(name===mode));$(name+'Tab').tabIndex=name===mode?0:-1;}change();}
+function setRGBColor(){$('color').value='#'+['red','green','blue'].map(id=>number(id).toString(16).padStart(2,'0')).join('');change();}
+function report(payload){
+ if(payload.length<11||payload[0]!==0xea||payload[1]!==0x81||payload[10]!==0xf0)return;
+ // Updated curtain notes identify power at byte 6. Other fields remain mode-dependent.
+ const power=payload[6]===0x23?'On':payload[6]===0x24?'Off':'Unknown';
+ $('deviceStatus').textContent=`Reported power: ${power} · Model: 0x${hex([payload[4]])} · Data 1: ${payload[8]} · Data 2: ${payload[9]} · ${new Date().toLocaleTimeString()}`;
+}
+function notification(event){
+ const value=event.target.value, bytes=new Uint8Array(value.buffer,value.byteOffset,value.byteLength);log('RX',hex(bytes));
+ if(bytes[0]===0xea){report(bytes);return;}
+ if(bytes.length<5||(bytes[0]&3)!==0)return;
+ const seq=bytes[1],id=(bytes[2]<<8)|bytes[3];
+ if(id===0x8000&&bytes.length>=8){if(bytes[6]===bytes.length-7)report(bytes.slice(8));return;}
+ if(id===0&&bytes.length>=8){
+  if(bytes[6]!==bytes.length-7)return;
+  for(const [key,item] of received)if(Date.now()-item.time>5000)received.delete(key);
+  received.set(seq,{parts:Array.from(bytes.slice(8)),length:(bytes[4]<<8)|bytes[5],next:1,time:Date.now()});return;
+ }
+ const pending=received.get(seq);if(!pending)return;
+ if(Date.now()-pending.time>5000||(id&0x7fff)!==pending.next){received.delete(seq);return;}
+ const count=bytes[4];const header=bytes.length===count+6?6:5;if(bytes.length!==count+header){received.delete(seq);return;}
+ pending.parts.push(...bytes.slice(header));pending.next++;
+ if(pending.parts.length>pending.length){received.delete(seq);return;}
+ if(id&0x8000){if(pending.parts.length===pending.length)report(Uint8Array.from(pending.parts));received.delete(seq);}
+}
+function cleanup(){stopAudio();generation++;clearTimeout(liveTimer);received.clear();if(notifier)notifier.removeEventListener('characteristicvaluechanged',notification);notifier=null;writer=null;demo=false;connecting=false;queue=Promise.resolve();setReady(false);$('deviceName').textContent='No curtain connected';$('deviceStatus').textContent='Device status: waiting for a notification';$('service').disabled=false;$('packetSize').disabled=false;$('continuation').disabled=false;}
+function disconnected(){cleanup();message('Curtain disconnected. Connect again to continue.');log('INFO','Disconnected');}
+function disconnect(){if(device){device.removeEventListener('gattserverdisconnected',disconnected);if(device.gatt.connected)device.gatt.disconnect();}device=null;cleanup();}
+function connectionError(error,stage){
+ if(error.name==='NotFoundError'&&stage==='picker')return 'No BLE device selected. If your curtain is missing, enable Bluetooth, move closer, and close other apps connected to it.';
+ if(error.name==='SecurityError'||error.name==='NotAllowedError')return 'Bluetooth access was denied. Allow Bluetooth for this site and open it directly over HTTPS or localhost.';
+ if(error.name==='NetworkError')return 'The BLE connection failed during '+stage+'. Close the Surplife app or other Bluetooth controllers, power-cycle the curtain, and connect again.';
+ return 'Could not connect during '+stage+': '+error.message;
+}
+async function discoverControls(server,services){
+ for(const uuid of services){
+  let primary;
+  try{primary=await server.getPrimaryService(uuid);}
+  catch(error){if(error.name!=='NotFoundError')throw error;log('INFO','Service not present: '+uuid);continue;}
+  const characteristics=await primary.getCharacteristics();
+  log('INFO','Service '+uuid+' · Characteristics: '+characteristics.map(c=>c.uuid).join(', '));
+  const output=characteristics.find(c=>c.uuid===WRITE_UUID&&(c.properties.write||c.properties.writeWithoutResponse));
+  if(!output)continue;
+  const input=characteristics.find(c=>c.uuid===NOTIFY_UUID&&(c.properties.notify||c.properties.indicate));
+  return {primary,output,input};
+ }
+ throw Error('No compatible FF01 write characteristic found in services '+services.join(', ')+'. Check the curtain’s service UUID with a BLE inspector and enter it in Connection settings.');
+}
+async function connect(){
+ if(connecting||ready)return;
+ let stage='setup', selected=null;
+ const token=generation;
+ const checkConnection=()=>{if(token!==generation)throw Error('Connection cancelled.');};
+ try{
+  if(!window.isSecureContext)throw Error('Bluetooth requires HTTPS or localhost.');
+  if(!navigator.bluetooth)throw Error('Web Bluetooth is unavailable. Use a browser that supports Web Bluetooth.');
+  const service=$('service').value.trim().toLowerCase();
+  if(service&&!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(service))throw Error('Enter a valid service UUID, or leave it empty for auto-detection.');
+  const services=[...new Set([...(service?[service]:[]),...SERVICE_UUIDS])];
+  const clock=$('syncClock').checked?timePayload():null;
+  connecting=true;setReady(false);message('Choose your curtain in the Bluetooth device picker.');stage='picker';
+  // Do not filter by an advertised service by default: some curtains omit it.
+  // All services we may inspect must be allowed in this initial permission request.
+  selected=await navigator.bluetooth.requestDevice($('allDevices').checked?
+   {acceptAllDevices:true,optionalServices:services}:
+   {filters:services.map(uuid=>({services:[uuid]})),optionalServices:services});
+  checkConnection();device=selected;
+  if(!device.gatt)throw Error('The selected device does not expose a BLE GATT server.');
+  device.addEventListener('gattserverdisconnected',disconnected);message('Connecting and discovering curtain controls…');stage='GATT connection';
+  const server=await device.gatt.connect();checkConnection();stage='service discovery';
+  const controls=await discoverControls(server,services);checkConnection();
+  writer=controls.output;notifier=controls.input||null;
+  log('INFO','Using service '+controls.primary.uuid+' · '+(writer.properties.writeWithoutResponse?'write without response':'write with response'));
+  if(notifier){
+   stage='notification subscription';notifier.addEventListener('characteristicvaluechanged',notification);
+   await notifier.startNotifications();checkConnection();
+  }else{log('INFO','No FF02 notification characteristic; commands available without status reports.');}
+  transport={size:number('packetSize'),continuation:number('continuation')};sequence=0;stage='initialization';
+  if(clock)await send(clock,'Time sync');await send(PING,'Handshake');checkConnection();
+  connecting=false;setReady(true);$('deviceName').textContent=device.name||'BLE curtain';for(const id of ['service','packetSize','continuation'])$(id).disabled=true;
+  if(!notifier)$('deviceStatus').textContent='Status reports unavailable on this device.';
+  message('Connected. Choose a mode and press Apply.'+(notifier?'':' Status reports are unavailable.'));log('INFO','Connected to '+(device.name||device.id));
+ }catch(error){
+  if(token!==generation){if(selected?.gatt?.connected)selected.gatt.disconnect();return;}
+  disconnect();message(connectionError(error,stage),true);log('ERROR',stage+': '+error.name+' · '+error.message);
+ }
+}
+function gridSize() {
+ const columns=Number($('columns').value),rows=Number($('rows').value);
+ if(!Number.isInteger(columns)||!Number.isInteger(rows)||columns<1||rows<1||columns*rows>MAX_LEDS) throw new Error('Use whole dimensions with 1–400 LEDs total.');
+ return {columns,rows};
+}
+function rgbColor() { return $('color').value.match(/[a-f\d]{2}/gi).map(x=>parseInt(x,16)); }
+function toWireOrder(pixels,columns,rows,wiring) {
+ const result=[];
+ if(wiring.startsWith('columns')) {
+  for(let x=0;x<columns;x++) for(let k=0;k<rows;k++) { const y=wiring.endsWith('zigzag')&&x%2?rows-1-k:k;result.push(pixels[y*columns+x]); }
+ } else {
+  for(let y=0;y<rows;y++) for(let k=0;k<columns;k++) { const x=wiring.endsWith('zigzag')&&y%2?columns-1-k:k;result.push(pixels[y*columns+x]); }
+ }
+ return result;
+}
+function contentFrame(kind=mode,tintPicture=false) {
+ const {columns,rows}=gridSize();
+ const canvas=document.createElement('canvas');canvas.width=columns;canvas.height=rows;
+ const context=canvas.getContext('2d',{willReadFrequently:true});
+ context.fillStyle='#000';context.fillRect(0,0,columns,rows);
+ if(kind==='text') {
+  const text=$('textInput').value;if(!text.trim()) throw new Error('Enter a message to preview.');
+  const lines=text.split('\n');
+  if(lines.length>3) throw new Error('Use up to 3 lines of text.');
+  context.fillStyle=$('color').value;context.textAlign='center';context.textBaseline='middle';
+  let size=rows*.9/(lines.length*1.1);context.font=`bold ${size}px sans-serif`;
+  const width=Math.max(...lines.map(line=>context.measureText(line).width));
+  if(width>columns) size*=columns/width;
+  const lineHeight=size*1.1;
+  context.font=`bold ${size}px sans-serif`;
+  lines.forEach((line,index)=>context.fillText(line,columns/2,rows/2+(index-(lines.length-1)/2)*lineHeight,columns));
+ } else if(picturePreset) {
+  context.fillStyle=tintPicture?'#fff':$('color').value;
+  for(let y=0;y<rows;y++) for(let x=0;x<columns;x++) {
+   const nx=(x+.5)/columns*2-1,ny=1-(y+.5)/rows*2;
+   const heart=(nx*nx+ny*ny-.7)**3-nx*nx*ny**3<0;
+   const angle=Math.atan2(ny,nx)+Math.PI/2,radius=Math.hypot(nx,ny);
+   const star=radius<.55+.25*Math.cos(angle*5);
+   if(picturePreset==='heart'?heart:star) context.fillRect(x,y,1,1);
+  }
+ } else {
+  if(!pictureImage) throw new Error('Choose a picture or preset.');
+  const iw=pictureImage.width,ih=pictureImage.height;
+  const scale=$('pictureFit').value==='cover'?Math.max(columns/iw,rows/ih):Math.min(columns/iw,rows/ih);
+  const width=iw*scale,height=ih*scale;context.drawImage(pictureImage,(columns-width)/2,(rows-height)/2,width,height);
+ }
+ const rgba=context.getImageData(0,0,columns,rows).data;
+ const pixels=[],tint=kind==='pics'&&tintPicture?rgbColor():null;
+ for(let i=0;i<rgba.length;i+=4) {
+  const rgb=[rgba[i],rgba[i+1],rgba[i+2]];
+  pixels.push(tint?tint.map(v=>Math.round(v*Math.max(...rgb)/255)):rgb);
+ }
+ return {columns,rows,pixels};
+}
+function clearPixels() { const canvas=$('pixelCanvas');canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height); }
+function drawPixels(frame) {
+ const canvas=$('pixelCanvas');canvas.width=frame.columns*24;canvas.height=frame.rows*24;
+ const context=canvas.getContext('2d');context.fillStyle='#0c131b';context.fillRect(0,0,canvas.width,canvas.height);
+ const brightness=Number($('brightness').value)/100;
+ for(let y=0;y<frame.rows;y++) for(let x=0;x<frame.columns;x++) {
+  const rgb=frame.pixels[y*frame.columns+x].map(v=>Math.round(v*brightness));
+  context.fillStyle=previewOn?`rgb(${rgb.join(',')})`:'#27323b';context.beginPath();context.arc(x*24+12,y*24+12,6,0,Math.PI*2);context.fill();
+ }
+}
+function rhythmUsesPixels() { return $('rhythmStyle').value!=='flash'; }
+function rainbowColor(hue) {
+ const h=((hue%1)+1)%1*6;
+ return [0,4,2].map(offset=>Math.round(255*Math.max(0,Math.min(1,Math.abs((h+offset)%6-3)-1))));
+}
+function rhythmBarCount() { const {columns,rows}=gridSize();return Math.min(8,columns,rows); }
+function randomizeBarLengths() {
+ const {rows}=gridSize(),heights=Array.from({length:rows},(_,i)=>i+1);
+ // Sample without replacement so the LED grid can show distinct lengths.
+ for(let i=heights.length-1;i>0;i--) {
+  const j=Math.floor(Math.random()*(i+1));[heights[i],heights[j]]=[heights[j],heights[i]];
+ }
+ rhythmBarLevels=heights.slice(0,rhythmBarCount()).map(height=>height/rows);
+}
+function waveFrame(energy,phase) {
+ const {columns,rows}=gridSize(),pixels=[];
+ energy=Math.max(0,Math.min(1,energy));
+ // A moving sea surface with rainbow bands and a brighter crest.
+ for(let y=0;y<rows;y++) for(let x=0;x<columns;x++) {
+  const nx=(x+.5)/columns,ny=(y+.5)/rows;
+  const surface=1-energy*.75+Math.sin(nx*Math.PI*4-phase*Math.PI*2)*energy*.14;
+  const depth=ny-surface;
+  if(energy===0||depth<0) pixels.push([0,0,0]);
+  else {
+   const light=depth<1/rows?1:Math.max(.25,1-depth);
+   pixels.push(rainbowColor(nx+depth*.5-phase).map(v=>Math.round(v*light*energy)));
+  }
+ }
+ return {columns,rows,pixels};
+}
+function colorBarsFrame(energy,levels) {
+ const {columns,rows}=gridSize(),pixels=[],count=rhythmBarCount();
+ if(!levels) {
+  if(rhythmBarLevels.length!==count) randomizeBarLengths();
+  levels=rhythmBarLevels;
+ }
+ const volume=Math.max(0,Math.min(1,energy)),heights=Array(count).fill(0);
+ // Keep at least one LED of separation after volume scaling and rounding.
+ const order=Array.from({length:count},(_,bar)=>bar).sort((a,b)=>(levels[a]||0)-(levels[b]||0));
+ let previous=0;
+ order.forEach((bar,rank)=>{
+  const target=Math.round(volume*Math.max(0,Math.min(1,levels[bar]||0))*rows);
+  heights[bar]=volume===0?0:Math.max(previous+1,Math.min(rows-(count-1-rank),target));
+  previous=heights[bar];
+ });
+ const intensity=Math.min(1,volume*rows/count);
+ for(let y=0;y<rows;y++) for(let x=0;x<columns;x++) {
+  const bar=Math.min(count-1,Math.floor(x*count/columns));
+  const coverage=rows-1-y<heights[bar]?intensity:0;
+  const color=rainbowColor(bar/count);
+  pixels.push(color.map(v=>Math.round(v*coverage)));
+ }
+ return {columns,rows,pixels};
+}
+function rhythmPixelFrame(energy,phase) {
+ const style=$('rhythmStyle').value;
+ if(style==='wave') return waveFrame(energy,phase);
+ if(style==='color-bar') return colorBarsFrame(energy);
+ const frame=contentFrame(style==='flashing-text'?'text':'pics',style==='flashing-pics');
+ const level=Math.max(0,Math.min(1,energy));
+ return {...frame,pixels:frame.pixels.map(rgb=>rgb.map(v=>Math.round(v*level)))};
+}
+async function loadPicture() {
+ const version=++pictureVersion,file=$('picture').files[0];
+ if(!file)return;
+ try {
+  if(!['image/png','image/jpeg','image/webp','image/gif'].includes(file.type)||file.size>10*1024*1024) throw new Error('Choose a PNG, JPEG, WebP or GIF smaller than 10 MB.');
+  const image=await createImageBitmap(file);
+  if(version!==pictureVersion){image.close();return;}
+  pictureImage?.close();pictureImage=image;picturePreset=null;$('pictureName').textContent=file.name;change();
+ } catch(error) {message('Image could not be loaded: '+error.message,true);}
+}
+
+function paintPayloads(frame,brightness=number('brightness')){
+ if(!Number.isInteger(frame.columns)||!Number.isInteger(frame.rows)||frame.columns<1||frame.rows<1||frame.columns*frame.rows>MAX_LEDS||frame.pixels.length!==frame.columns*frame.rows)throw Error('Invalid LED frame.');
+ const wired=toWireOrder(frame.pixels,frame.columns,frame.rows,$('wiring').value),groups=new Map(),erase=new Uint8Array(159);
+ wired.forEach((rgb,index)=>{
+  erase[index>>3]|=1<<(index&7);
+  const {hue,value}=rgbToHue(rgb),intensity=Math.round(value*brightness/100*15)*17;
+  if(!intensity)return;
+  // At most 16 hues × 15 intensity levels; hue 0 is reserved for erase.
+  const colorHue=Math.max(1,Math.round(Math.round(hue/360*16)%16*255/16)),key=colorHue+','+intensity;
+  if(!groups.has(key))groups.set(key,{hue:colorHue,intensity,mask:new Uint8Array(159)});
+  groups.get(key).mask[index>>3]|=1<<(index&7);
+ });
+ return [[0xe2,0x0c,0x90,0,0,...erase],...Array.from(groups.values(),g=>[0xe2,0x0c,0x90,g.hue,g.intensity,...g.mask])];
+}
+function paintFrame(frame,valid=()=>true){return sendBatch(paintPayloads(frame),'Pixel paint',valid);}
+function stopRhythm() {
+ ++rhythmSession;rhythmActive=false;clearTimeout(rhythmTimer);rhythmTimer=null;
+ rhythmStream?.getTracks().forEach(track=>track.stop());rhythmStream=null;
+ if(rhythmSource){try{rhythmSource.disconnect();}catch{}}rhythmSource=null;
+ const context=rhythmContext;rhythmContext=null;if(context) context.close().catch(()=>{});
+ $('audioPlayer').pause();$('beatMeter').value=0;rhythmEnergy=0;
+ $('rhythmStart').disabled=false;$('rhythmStop').disabled=true;
+ $('rhythmStatus').textContent='Stopped. The curtain keeps its last transmitted setting.';
+ $('curtain').style.opacity='';
+}
+async function startRhythm() {
+ await stopRhythm();const session=++rhythmSession;
+ $('rhythmStart').disabled=true;$('rhythmStop').disabled=false;
+ $('rhythmStatus').textContent='Preparing audio…';
+ try {
+  const pixel=rhythmUsesPixels();if(pixel) rhythmPixelFrame(0,0);
+
+  const Audio=window.AudioContext||window.webkitAudioContext;
+  if(!Audio) throw new Error('Web Audio is unavailable in this browser.');
+  if($('audioSource').value==='file'&&!audioURL) throw new Error('Choose a local audio file first.');
+  const context=new Audio();rhythmContext=context;
+  await context.resume();if(session!==rhythmSession)return;
+  const analyser=context.createAnalyser();analyser.fftSize=1024;analyser.smoothingTimeConstant=.3;
+  if($('audioSource').value==='mic') {
+   if(!navigator.mediaDevices?.getUserMedia) throw new Error('Microphone access requires HTTPS or localhost and browser support.');
+   const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+   if(session!==rhythmSession){stream.getTracks().forEach(track=>track.stop());return;}
+   rhythmStream=stream;rhythmSource=context.createMediaStreamSource(stream);rhythmSource.connect(analyser);
+   stream.getTracks().forEach(track=>track.addEventListener('ended',()=>{if(rhythmActive){stopRhythm();message('Microphone disconnected.',true);}}));
+  } else {
+   // A fresh audio element permits a fresh MediaElementAudioSourceNode after each stop.
+   const old=$('audioPlayer'),player=old.cloneNode(false);player.src=audioURL;old.replaceWith(player);
+   rhythmSource=context.createMediaElementSource(player);rhythmSource.connect(analyser);analyser.connect(context.destination);
+   player.addEventListener('ended',()=>{if(session===rhythmSession)stopRhythm();});
+   player.addEventListener('error',()=>{if(session===rhythmSession){stopRhythm();message('Audio file could not be decoded. Choose another file.',true);}});await player.play();
+  }
+  if(session!==rhythmSession)return;
+  rhythmActive=true;rhythmLastSend=-Infinity;rhythmPhase=0;if($('rhythmStyle').value==='color-bar')randomizeBarLengths();
+  const data=new Uint8Array(analyser.fftSize);let average=.015,envelope=0,lastBeat=-Infinity,lastTime=performance.now();
+  const tick=()=>{
+   if(session!==rhythmSession||!rhythmActive)return;
+   const now=performance.now(),dt=Math.min(.2,(now-lastTime)/1000);lastTime=now;
+   analyser.getByteTimeDomainData(data);let sum=0;for(const value of data)sum+=((value-128)/128)**2;
+   const rms=Math.sqrt(sum/data.length),gain=.4+Number($('sensitivity').value)/25;
+   const beat=rms>Math.max(.012,average*(1.65-Number($('sensitivity').value)/200))&&now-lastBeat>340;
+   average=average*.94+rms*.06;
+   if(beat){lastBeat=now;envelope=Math.min(1,rms*gain*6);if($('rhythmStyle').value==='color-bar')randomizeBarLengths();}
+   else envelope*=Math.exp(-dt*3.5);
+   rhythmEnergy=['flash','flashing-pics','flashing-text'].includes($('rhythmStyle').value)?envelope:Math.min(1,Math.max(envelope,rms*gain*2));
+   rhythmPhase=(rhythmPhase+dt*(.15+rhythmEnergy*1.2))%1;$('beatMeter').value=Math.min(1,rms*gain*4);
+   let frame;
+   if(pixel) {try{frame=rhythmPixelFrame(rhythmEnergy,rhythmPhase);drawPixels(frame);}catch(error){stopRhythm();message(error.message,true);return;}}
+   else {$('curtain').style.opacity=Math.max(.02,rhythmEnergy*Number($('brightness').value)/100);}
+   if(ready&&pendingCommands===0&&!rhythmFrameBusy&&now-rhythmLastSend>=($('rhythmStyle').value==='flash'?250:450)) {
+    rhythmLastSend=now;rhythmFrameBusy=true;
+    const energy=rhythmEnergy;
+    rhythmWrite=run(async()=>{
+     if(session!==rhythmSession)return;
+     try {
+      if(pixel) await paintFrame(frame,()=>session===rhythmSession);
+      else await sendBatch([colorPayload(energy)],'Audio flash',()=>session===rhythmSession);
+     } catch(error){rhythmActive=false;clearTimeout(rhythmTimer);throw error;}
+    }).finally(()=>{rhythmFrameBusy=false;if(!rhythmActive&&session===rhythmSession){stopRhythm();$('rhythmStatus').textContent='Stopped after a Bluetooth error. Reconnect and start again.';}});
+   }
+   $('rhythmStatus').textContent=ready?(demo?'Listening · demo packets · ':'Listening · sending ')+$('rhythmStyle').value+' response':'Listening · preview only (curtain disconnected)';
+   rhythmTimer=setTimeout(tick,40);
+  };
+  tick();
+ } catch(error) {if(session===rhythmSession){await stopRhythm();message(error.message,true);$('rhythmStatus').textContent='Could not start: '+error.message;}}
+}
+
+function stopAudio(){stopRhythm();}
+for(let i=0;i<=17;i++)$('effect').add(new Option(`Effect ${String(i).padStart(2,'0')} · 0x${i.toString(16).padStart(2,'0')}`,i));
+document.querySelectorAll('[data-mode]').forEach(button=>button.onclick=()=>selectMode(button.dataset.mode));
+document.querySelectorAll('[role=tab]').forEach((tab,index,tabs)=>tab.onkeydown=event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:tabs.length-1))%tabs.length;tabs[next].focus();selectMode(tabs[next].dataset.mode);});
+for(const [name,color] of [['White','#ffffff'],['Warm amber','#ffc58b'],['Yellow','#ffff00'],['Green','#00ff00'],['Mint','#a8f5cd'],['Sky','#83d8ff'],['Blue','#0000ff'],['Lavender','#b49aff'],['Rose','#ff8fbc'],['Red','#ff0000']]){const button=document.createElement('button');button.style.setProperty('--swatch',color);button.setAttribute('aria-label',name);button.onclick=()=>{$('color').value=color;change();};$('swatches').append(button);}
+for(const id of ['red','green','blue'])$(id).addEventListener('input',setRGBColor);
+for(const id of ['brightness','speed','sensitivity','effect','textInput','columns','rows','wiring','pictureFit'])$(id).addEventListener('input',()=>{if(['columns','rows','wiring','pictureFit'].includes(id))stopAudio();change();});
+$('picture').onchange=loadPicture;
+for(const preset of ['heart','star'])$(preset).onclick=()=>{++pictureVersion;picturePreset=preset;$('pictureName').textContent=preset==='heart'?'Heart preset':'Star preset';change();};
+$('rhythmEditText').onclick=()=>selectMode('text');$('rhythmEditPicture').onclick=()=>selectMode('pics');
+$('audioSource').onchange=()=>{stopAudio();$('audioFilePanel').hidden=$('audioSource').value!=='file';};
+$('rhythmStyle').onchange=()=>{stopAudio();change();};
+$('audioFile').onchange=()=>{stopAudio();const file=$('audioFile').files[0];if(!file)return;if(file.size>100*1024*1024){message('Choose an audio file smaller than 100 MB.',true);return;}if(audioURL)URL.revokeObjectURL(audioURL);audioURL=URL.createObjectURL(file);$('audioPlayer').src=audioURL;};
+$('rhythmStart').onclick=startRhythm;$('rhythmStop').onclick=()=>{stopAudio();updatePreview();};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAudio();});
+window.addEventListener('pagehide',()=>{if(audioURL)URL.revokeObjectURL(audioURL);});
+$('live').onchange=()=>{clearTimeout(liveTimer);if($('live').checked&&ready)change();};
+$('connect').onclick=connect;$('disconnect').onclick=()=>{disconnect();message('Disconnected.');};
+$('demo').onclick=()=>{const wasDemo=demo;disconnect();if(wasDemo){message('Demo ended.');return;}demo=true;sequence=0;transport={size:number('packetSize'),continuation:number('continuation')};setReady(true);$('deviceName').textContent='Demo curtain';$('deviceStatus').textContent='Demo only · no device status';message('Demo mode. Controls preview changes and log packets without connecting to Bluetooth.');};
+window.addEventListener('pagehide',disconnect);
+$('apply').onclick=()=>run(apply);$('on').onclick=()=>run(async()=>{stopAudio();clearTimeout(liveTimer);await send([0x71,0x24],'Power on');message('Power-on command written.');});
+$('dark').onclick=()=>{stopAudio();$('brightness').value=0;selectMode('color');clearTimeout(liveTimer);run(apply);};
+$('ping').onclick=()=>run(()=>send(PING,'Status request'));$('sync').onclick=()=>run(()=>send(timePayload(),'Time sync'));
+document.querySelectorAll('[data-pin]').forEach(button=>button.onclick=()=>run(()=>{stopAudio();clearTimeout(liveTimer);const pins=[0,0,0,0,0];pins[Number(button.dataset.pin)]=255;return send([0xe0,0x15,0,0,...pins],'Raw channel test');}));
+$('saveMapping').onclick=()=>run(async()=>{stopAudio();clearTimeout(liveTimer);const order=$('mapping').value;await send([0xe0,0x13,...['R','G','B'].map(c=>order.indexOf(c)),3,4,5],'Channel mapping');await send([0xe0,0x0e,1],'Save calibration');message('Mapping and save commands written.');});
+$('exitCalibration').onclick=()=>run(apply);$('clearLog').onclick=()=>{entries=[];$('log').textContent='Log cleared.';};
+$('downloadLog').onclick=()=>{const url=URL.createObjectURL(new Blob([entries.join('\n')],{type:'text/plain'})),a=document.createElement('a');a.href=url;a.download='Surplife-packets.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+selectMode('color');setReady(false);
+if(!window.isSecureContext)message('Bluetooth requires HTTPS or localhost. Run: python3 -m http.server 8000, then open http://localhost:8000/Surplife.html',true);
+else if(!navigator.bluetooth)message('Web Bluetooth is unavailable in this browser. Use a supported Chrome or Edge browser, or explore Try demo.',true);
+</script>
+<script>
+'use strict';
+(() => {
+ const status = document.getElementById('appStatus');
+ const install = document.getElementById('installApp');
+ let installPrompt = null, offlineReady = false;
+ const standalone = window.matchMedia('(display-mode: standalone)');
+ function updateAppStatus() {
+  const installed = standalone.matches || navigator.standalone === true;
+  status.textContent = [
+   installed ? 'Running as Surplife app.' : 'Install from your browser’s app menu.',
+   offlineReady ? 'Available offline.' : 'Offline access becomes available after the first online visit.',
+   navigator.onLine ? '' : 'You are offline; Bluetooth can still connect in a supported browser.'
+  ].filter(Boolean).join(' ');
+ }
+ window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault(); installPrompt = event; install.hidden = false;
+ });
+ install.addEventListener('click', async () => {
+  if (!installPrompt) return;
+  const prompt = installPrompt; installPrompt = null; install.hidden = true;
+  try { await prompt.prompt(); await prompt.userChoice; }
+  catch (error) { status.textContent = 'Use your browser’s app menu to install Surplife.'; console.warn('Install prompt:', error); }
+ });
+ window.addEventListener('appinstalled', () => {
+  installPrompt = null; install.hidden = true; updateAppStatus();
+ });
+ window.addEventListener('online', updateAppStatus);
+ window.addEventListener('offline', updateAppStatus);
+ standalone.addEventListener('change', updateAppStatus);
+ updateAppStatus();
+ if ('serviceWorker' in navigator && window.isSecureContext && /^https?:$/.test(location.protocol)) {
+  navigator.serviceWorker.register('./surplife-sw.js', {scope: './', updateViaCache: 'none'})
+   .then(() => navigator.serviceWorker.ready)
+   .then(() => { offlineReady = true; updateAppStatus(); })
+   .catch(error => {
+    status.textContent = 'Offline setup failed. Reload while online to try again.';
+    console.warn('Surplife offline setup:', error);
+   });
+ } else {
+  status.textContent = 'Installation and offline access require HTTPS or localhost and a browser with service worker support.';
+ }
+})();
+</script></body></html>
