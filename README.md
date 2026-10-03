@@ -6,8 +6,7 @@
 ### [AI ROBOT ODYSSEY](https://rkuo2000.github.io/vibe-AI_Robot_Odyssey/)
 `claude.ai` `Opus 5.5 Medium` <br>
 
-#### Prompt
-+ [Prompt template](https://github.com/rkuo2000/Vibe2026/blob/main/Prompt-AI_ROBOT_ODYSSEY.txt)
+#### Prompt + [template.txt](https://github.com/rkuo2000/Vibe2026/blob/main/Prompt-AI_ROBOT_ODYSSEY.txt)
 ```
 use the uploaded Prompt template, and include learning content from https://rkuo2000.github.io/AI-course, and its chapters, then to generate an interactive course in HTML
 ```
@@ -18,8 +17,7 @@ use the uploaded Prompt template, and include learning content from https://rkuo
 ### [AI ROBOT ODYSSEY](https://rkuo2000.github.io/vibe-GenAI_Odyssey/)
 `claude.ai` `Opus 5.5 Medium` <br>
 
-#### Prompt
-+ [Prompt template](https://github.com/rkuo2000/Vibe2026/blob/main/Prompt-AI_ROBOT_ODYSSEY.txt)
+#### Prompt + [template.txt](https://github.com/rkuo2000/Vibe2026/blob/main/Prompt-AI_ROBOT_ODYSSEY.txt)
 ```
 use the uploaded Prompt template to create the Generative AI interative course in HTML that includes chapter content at https://github.com/rkuo2000/AI-course/tree/main/_posts/*.md
 ```
@@ -30,8 +28,7 @@ use the uploaded Prompt template to create the Generative AI interative course i
 ### [AMEBA ROBOT ODYSSEY](https://rkuo2000.github.io/EdgeAI-AmebaPro2/)
 `claude.ai` `Opus 5.5 Medium` <br>
 
-#### Prompt
-+ [Prompt template](https://github.com/rkuo2000/Vibe2026/blob/main/Prompt-AI_ROBOT_ODYSSEY.txt)
+#### Prompt + [template](https://github.com/rkuo2000/Vibe2026/blob/main/Prompt-AI_ROBOT_ODYSSEY.txt)
 ```
 use the uploaded Prompt template, and study [https://rkuo2000.github.io/EdgeAI-AmebaPro2](https://rkuo2000.github.io/EdgeAI-AmebaPro2/), then to generate an interactive AmebaPro2 course in HTML, for learn-experiemnt-build, please use AMB82-Mini arduino library and examples
 ```
@@ -44,8 +41,7 @@ use the uploaded Prompt template, and study [https://rkuo2000.github.io/EdgeAI-A
 ### [Surplife Smart LED Curtain](https://rkuo2000.github.io/vibe-Surplife/)
 `codex` `GPT-6.1 Sol` `medium`<br>
 
-#### Prompt
-+ [controllights.md](https://github.com/rkuo2000/Vibe2026/blob/main/Surplife/controllights.md)<br>
+#### Prompt + [controllights.md](https://github.com/rkuo2000/Vibe2026/blob/main/Surplife/controllights.md)<br>
 ```
 study controllights.md, generate a BLE smart LED Curtain controller in html, named Surplife.html
 ```
