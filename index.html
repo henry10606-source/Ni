@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BandLab｜半導體能隙互動實驗室</title>
+<style>
+:root{
+  --bg:#07111f;--panel:rgba(14,25,43,.76);--line:rgba(255,255,255,.10);
+  --text:#eef6ff;--muted:#9db0c9;--cyan:#55d6ff;--blue:#6c7cff;
+  --green:#66f0b0;--yellow:#ffd166;--red:#ff6b7a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;color:var(--text);
+  background:
+    radial-gradient(circle at 10% 20%,rgba(85,214,255,.12),transparent 26%),
+    radial-gradient(circle at 88% 10%,rgba(108,124,255,.16),transparent 28%),
+    linear-gradient(180deg,#07111f,#091423 45%,#060d18);
+  min-height:100vh;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:36px 36px;
+}
+.wrap{width:min(1180px,92vw);margin:auto}
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(16px);background:rgba(7,17,31,.7);border-bottom:1px solid var(--line)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:900;letter-spacing:.5px;display:flex;gap:10px;align-items:center}
+.logo{width:34px;height:34px;border-radius:10px;background:conic-gradient(from 180deg,var(--cyan),var(--blue),#b26cff,var(--cyan));box-shadow:0 0 28px rgba(85,214,255,.3);position:relative}
+.logo:after{content:"";position:absolute;inset:7px;border-radius:7px;background:#08121f}
+.links{display:flex;gap:20px;font-size:14px}.links a{color:var(--muted);text-decoration:none}.links a:hover{color:#fff}
+header{padding:74px 0 38px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.eyebrow{display:inline-flex;color:var(--cyan);font-size:13px;font-weight:800;letter-spacing:1.5px;padding:8px 12px;border:1px solid rgba(85,214,255,.22);border-radius:999px;background:rgba(85,214,255,.06)}
+h1{font-size:clamp(42px,6vw,78px);line-height:1.04;margin:20px 0 18px;letter-spacing:-2px}
+.grad{background:linear-gradient(90deg,#fff,var(--cyan),#a3aaff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:#b7c7da;font-size:18px;line-height:1.8;max-width:700px}
+.actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:900;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.primary{color:#06101b;background:linear-gradient(135deg,var(--cyan),#a3f5ff)}
+.ghost{color:var(--text);background:rgba(255,255,255,.055);border:1px solid var(--line)}
+.visual{min-height:330px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.02));position:relative;overflow:hidden}
+.atom{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:115px;height:115px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c6f7ff,var(--cyan) 30%,#4862ff 72%,#172a54);box-shadow:0 0 70px rgba(85,214,255,.35)}
+.ring{position:absolute;left:50%;top:50%;width:245px;height:95px;border:1px solid rgba(121,208,255,.35);border-radius:50%;transform-origin:center}
+.r1{transform:translate(-50%,-50%) rotate(18deg)}.r2{transform:translate(-50%,-50%) rotate(78deg)}.r3{transform:translate(-50%,-50%) rotate(138deg)}
+section{padding:34px 0}
+.sec-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}.sec-head h2{margin:10px 0 0;font-size:30px}.sec-head p{color:var(--muted);max-width:610px;text-align:right;margin:0}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+.card{background:linear-gradient(180deg,var(--panel),rgba(9,18,31,.8));border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.32);backdrop-filter:blur(10px)}
+.card h3{margin:0 0 16px}
+.materials{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mat{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:16px;padding:14px;color:var(--text);text-align:left;cursor:pointer}
+.mat:hover{transform:translateY(-2px);border-color:rgba(85,214,255,.35)}
+.mat.active{background:linear-gradient(135deg,rgba(85,214,255,.16),rgba(108,124,255,.14));border-color:rgba(85,214,255,.55)}
+.mat b{display:block;font-size:17px;margin-bottom:4px}.mat small{color:var(--muted)}
+.control{margin-top:22px}.control-row{display:flex;justify-content:space-between;margin-bottom:10px}.value{color:var(--cyan);font-weight:900}
+input[type=range]{width:100%;accent-color:#66dfff}
+.spectrum{height:16px;border-radius:999px;margin-top:12px;position:relative;background:linear-gradient(90deg,#7f00ff,#455cff 15%,#00a7ff 27%,#00e091 42%,#f7f745 58%,#ff9d2e 73%,#ff4938 88%,#981f2e)}
+.marker{position:absolute;top:-7px;width:3px;height:30px;background:#fff;box-shadow:0 0 14px #fff;left:50%}
+.labels{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.kpi{padding:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025)}.kpi span{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}.kpi b{font-size:24px}
+.status{margin-top:16px;padding:15px;border-radius:16px;border:1px solid var(--line);display:flex;gap:12px;align-items:center}.dot{width:12px;height:12px;border-radius:50%;box-shadow:0 0 18px currentColor}
+.status.good{background:rgba(102,240,176,.08);color:var(--green);border-color:rgba(102,240,176,.24)}.status.bad{background:rgba(255,107,122,.08);color:var(--red);border-color:rgba(255,107,122,.24)}
+.band{height:380px;position:relative}.axis{position:absolute;left:68px;top:54px;bottom:46px;width:1px;background:rgba(255,255,255,.16)}
+.zone{position:absolute;left:90px;right:24px;height:70px;border:1px solid;border-radius:16px}.cb{top:72px;background:rgba(85,214,255,.07);border-color:rgba(85,214,255,.35)}.vb{bottom:72px;background:rgba(108,124,255,.08);border-color:rgba(108,124,255,.35)}
+.zone b{position:absolute;left:16px;top:14px}.zone small{position:absolute;left:16px;bottom:12px;color:var(--muted)}
+.gap{position:absolute;right:35px;top:50%;transform:translateY(-50%);color:var(--yellow);font-weight:900}
+.arrow{position:absolute;left:55%;bottom:143px;height:100px;width:2px;background:linear-gradient(var(--green),var(--cyan));opacity:.4}
+.electron{position:absolute;left:54%;bottom:92px;width:14px;height:14px;border-radius:50%;background:var(--green);box-shadow:0 0 18px var(--green);transition:.55s}
+.electron.up{bottom:256px;background:var(--cyan);box-shadow:0 0 20px var(--cyan)}
+.hole{position:absolute;left:54%;bottom:92px;width:16px;height:16px;border:2px solid var(--red);border-radius:50%;opacity:0;transition:.3s}.hole.show{opacity:1}
+.note{position:absolute;left:20px;bottom:14px;color:var(--muted);font-size:12px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}.bars{display:grid;gap:11px}.bar-row{display:grid;grid-template-columns:84px 1fr 70px;gap:10px;align-items:center}.track{height:12px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue));border-radius:999px}.bar-row small{color:var(--muted);text-align:right}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.quiz-options button{background:rgba(255,255,255,.035);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:13px;cursor:pointer;font-weight:700}.quiz-options button:hover{border-color:rgba(85,214,255,.45)}
+footer{padding:42px 0 70px;text-align:center;color:#788ca7;font-size:13px}
+@media(max-width:850px){.hero,.grid,.compare{grid-template-columns:1fr}.links{display:none}.materials{grid-template-columns:repeat(2,1fr)}.sec-head{flex-direction:column;align-items:flex-start}.sec-head p{text-align:left}}
+</style>
+</head>
+<body>
+<nav><div class="wrap nav"><div class="brand"><span class="logo"></span>BandLab</div><div class="links"><a href="#lab">互動實驗</a><a href="#compare">材料比較</a><a href="#quiz">快速挑戰</a></div></div></nav>
+
+<header>
+<div class="wrap hero">
+  <div>
+    <span class="eyebrow">Interactive Semiconductor Lab</span>
+    <h1>看見光子如何<br><span class="grad">跨越能隙</span></h1>
+    <p class="lead">選擇半導體材料、拖動入射光波長，即時觀察光子能量、吸收條件與電子躍遷。把抽象的 <b>E = 1240 / λ</b> 變成可以操作的視覺實驗。</p>
+    <div class="actions"><button class="btn primary" onclick="document.querySelector('#lab').scrollIntoView()">開始實驗</button><button class="btn ghost" onclick="randomize()">隨機挑戰</button></div>
+  </div>
+  <div class="visual"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="atom"></div></div>
+</div>
+</header>
+
+<section id="lab"><div class="wrap">
+  <div class="sec-head"><div><span class="eyebrow">01 / Live Lab</span><h2>能隙 × 波長互動實驗</h2></div><p>當光子能量 <b>Ephoton ≥ Eg</b> 時，電子可由價帶躍遷至導帶，材料具備吸收此光子的條件。</p></div>
+  <div class="grid">
+    <div class="card">
+      <h3>選擇材料</h3><div class="materials" id="materials"></div>
+      <div class="control"><div class="control-row"><b>入射光波長 λ</b><span class="value"><span id="waveVal">650</span> nm</span></div><input id="wave" type="range" min="300" max="1600" value="650"><div class="spectrum"><div class="marker" id="marker"></div></div><div class="labels"><span>UV 300</span><span>Visible</span><span>NIR 1600 nm</span></div></div>
+      <div class="kpis"><div class="kpi"><span>Photon Energy</span><b id="photonE"></b></div><div class="kpi"><span>Bandgap Eg</span><b id="bandgap"></b></div><div class="kpi"><span>Cutoff λg</span><b id="cutoff"></b></div></div>
+      <div class="status good" id="status"><span class="dot"></span><div><b id="statusTitle"></b><div id="statusText" style="font-size:12px;color:inherit;opacity:.8;margin-top:4px"></div></div></div>
+    </div>
+    <div class="card band">
+      <h3>能帶視覺化</h3><div class="axis"></div>
+      <div class="zone cb"><b>Conduction Band</b><small>導帶</small></div>
+      <div class="zone vb"><b>Valence Band</b><small>價帶</small></div>
+      <div class="gap" id="gapLabel"></div><div class="arrow"></div><div class="electron" id="electron"></div><div class="hole" id="hole"></div>
+      <div class="note">示意圖非按能量比例繪製，用於理解光吸收與能帶躍遷。</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="compare"><div class="wrap">
+  <div class="sec-head"><div><span class="eyebrow">02 / Compare</span><h2>材料能隙比較</h2></div><p>能隙越小，截止波長通常越長；可吸收光譜範圍也會往近紅外延伸。</p></div>
+  <div class="compare">
+    <div class="card"><h3>Bandgap ranking</h3><div class="bars" id="bars"></div></div>
+    <div class="card"><h3>目前材料摘要</h3><div id="summaryName" style="font-size:34px;font-weight:900"></div><div id="summaryFormula" style="color:var(--cyan);font-size:18px;font-weight:800"></div><p id="summaryText" style="color:var(--muted);line-height:1.8"></p><div class="kpis" style="grid-template-columns:1fr 1fr"><div class="kpi"><span>Bandgap</span><b id="summaryEg"></b></div><div class="kpi"><span>λg</span><b id="summaryCutoff"></b></div></div></div>
+  </div>
+</div></section>
+
+<section id="quiz"><div class="wrap">
+  <div class="sec-head"><div><span class="eyebrow">03 / Challenge</span><h2>30 秒概念挑戰</h2></div><p>用剛才的互動結果快速測一下理解程度。</p></div>
+  <div class="card"><div id="quizQ" style="font-size:19px;font-weight:900;line-height:1.6;margin-bottom:14px"></div><div class="quiz-options" id="quizOptions"></div><div id="quizResult" style="min-height:28px;margin-top:14px"></div><button class="btn ghost" onclick="newQuiz()">換一題</button></div>
+</div></section>
+
+<footer><div class="wrap">BandLab — Semiconductor Bandgap Interactive Lab<br><span style="font-size:12px">Bandgap values are approximate room-temperature values for educational visualization.</span></div></footer>
+
+<script>
+const mats=[
+{id:'Si',name:'Silicon',eg:1.12,desc:'矽是最常見的半導體材料之一，適合用來理解光吸收與能帶的基本概念。'},
+{id:'GaAs',name:'Gallium Arsenide',eg:1.42,desc:'GaAs 為直接能隙半導體，常見於高速光電元件與高效率太陽能電池。'},
+{id:'CdS',name:'Cadmium Sulfide',eg:2.42,desc:'CdS 具有較寬能隙，常作為異質接面中的 n 型緩衝層。'},
+{id:'Sb₂Se₃',name:'Antimony Selenide',eg:1.20,desc:'Sb₂Se₃ 具適合光吸收的能隙，常被研究於薄膜光伏與光電化學系統。'},
+{id:'Cu₂O',name:'Cuprous Oxide',eg:2.10,desc:'Cu₂O 是 p 型氧化物半導體，具有可見光響應與低成本材料優勢。'},
+{id:'SnS',name:'Tin Sulfide',eg:1.30,desc:'SnS 為地殼元素相對豐富的吸收層候選材料，可用於薄膜光電研究。'}
+];
+let current=mats[0];
+const wave=document.getElementById('wave');
+function cutoff(eg){return 1240/eg}
+function renderMaterials(){
+  document.getElementById('materials').innerHTML=mats.map(m=>`<button class="mat ${m.id===current.id?'active':''}" onclick="pick('${m.id}')"><b>${m.id}</b><small>Eg ≈ ${m.eg.toFixed(2)} eV</small></button>`).join('');
+}
+function pick(id){current=mats.find(m=>m.id===id);renderMaterials();update();summary()}
+function update(){
+  const l=+wave.value,e=1240/l,ok=e>=current.eg;
+  waveVal.textContent=l;photonE.textContent=e.toFixed(2)+' eV';bandgap.textContent=current.eg.toFixed(2)+' eV';cutoffEl=Math.round(cutoff(current.eg));document.getElementById('cutoff').textContent=cutoffEl+' nm';
+  marker.style.left=((l-300)/1300*100)+'%';gapLabel.textContent='Eg = '+current.eg.toFixed(2)+' eV';
+  status.className='status '+(ok?'good':'bad');statusTitle.textContent=ok?'可吸收｜電子可躍遷':'不可吸收｜能量不足';
+  statusText.textContent=ok?`Ephoton = ${e.toFixed(2)} eV ≥ Eg，可形成電子－電洞對。`:`Ephoton = ${e.toFixed(2)} eV < Eg，光子不足以跨越能隙。`;
+  electron.classList.toggle('up',ok);hole.classList.toggle('show',ok);
+}
+function bars(){
+  const max=Math.max(...mats.map(m=>m.eg));
+  document.getElementById('bars').innerHTML=mats.slice().sort((a,b)=>b.eg-a.eg).map(m=>`<div class="bar-row"><b>${m.id}</b><div class="track"><div class="fill" style="width:${m.eg/max*100}%"></div></div><small>${m.eg.toFixed(2)} eV</small></div>`).join('');
+}
+function summary(){summaryName.textContent=current.name;summaryFormula.textContent=current.id;summaryText.textContent=current.desc;summaryEg.textContent=current.eg.toFixed(2)+' eV';summaryCutoff.textContent=Math.round(cutoff(current.eg))+' nm'}
+function randomize(){current=mats[Math.floor(Math.random()*mats.length)];wave.value=Math.floor(320+Math.random()*1200);renderMaterials();update();summary();document.querySelector('#lab').scrollIntoView()}
+const quizzes=[
+{q:'若光子能量小於半導體能隙 Eg，最合理的結果是？',opts:['電子跨越能隙','形成電子－電洞對','無法進行帶間吸收','能隙自動縮小'],ans:2,exp:'Ephoton < Eg 時，光子不足以讓電子由價帶躍遷到導帶。'},
+{q:'波長變長時，光子能量會如何變化？',opts:['增加','降低','不變','先增後減'],ans:1,exp:'由 E = 1240 / λ 可知，波長越長，光子能量越低。'},
+{q:'哪一個關係式可快速估算光子能量（eV）？',opts:['E = λ / 1240','E = 1240 / λ','E = 1240 × λ','E = λ²'],ans:1,exp:'當 λ 以 nm 表示時，可用 E(eV) ≈ 1240 / λ(nm)。'}
+];
+let quiz;
+function newQuiz(){quiz=quizzes[Math.floor(Math.random()*quizzes.length)];quizQ.textContent=quiz.q;quizOptions.innerHTML=quiz.opts.map((o,i)=>`<button onclick="answerQuiz(${i})">${o}</button>`).join('');quizResult.textContent=''}
+function answerQuiz(i){const ok=i===quiz.ans;quizResult.textContent=(ok?'✅ 正確。':'❌ 再想一下。')+' '+quiz.exp;quizResult.style.color=ok?'var(--green)':'var(--red)'}
+wave.addEventListener('input',update);
+renderMaterials();bars();summary();update();newQuiz();
+</script>
+</body>
+</html>
